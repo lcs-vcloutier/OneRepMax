@@ -14,6 +14,7 @@
 		920178FF27DE580800D3D5AA /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920178FE27DE580800D3D5AA /* CalculatorView.swift */; };
 		9201790327DE583200D3D5AA /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9201790227DE583200D3D5AA /* Model.swift */; };
 		9201790527DE583C00D3D5AA /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9201790427DE583C00D3D5AA /* ViewModel.swift */; };
+		9201790727DE673A00D3D5AA /* AddEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9201790627DE673A00D3D5AA /* AddEntryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		920178FE27DE580800D3D5AA /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
 		9201790227DE583200D3D5AA /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		9201790427DE583C00D3D5AA /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		9201790627DE673A00D3D5AA /* AddEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				920178F227DE568E00D3D5AA /* ListView.swift */,
 				920178FE27DE580800D3D5AA /* CalculatorView.swift */,
+				9201790627DE673A00D3D5AA /* AddEntryView.swift */,
 			);
 			path = Frontend;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 				9201790527DE583C00D3D5AA /* ViewModel.swift in Sources */,
 				920178F327DE568E00D3D5AA /* ListView.swift in Sources */,
 				920178FF27DE580800D3D5AA /* CalculatorView.swift in Sources */,
+				9201790727DE673A00D3D5AA /* AddEntryView.swift in Sources */,
 				920178F127DE568E00D3D5AA /* OneRepMaxApp.swift in Sources */,
 				9201790327DE583200D3D5AA /* Model.swift in Sources */,
 			);
