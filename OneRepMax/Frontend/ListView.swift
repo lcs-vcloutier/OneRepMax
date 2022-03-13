@@ -23,7 +23,7 @@ struct ListView: View {
                     .font(.caption)
             }
         }
-        .navigationTitle("1RM Tracker")
+        .navigationTitle("Tracker")
         .toolbar {
             ToolbarItem {
                 Button {
