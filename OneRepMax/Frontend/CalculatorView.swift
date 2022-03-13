@@ -10,7 +10,7 @@ import SwiftUI
 struct CalculatorView: View {
     @State private var oneRepMax = ""
     @State private var exercise = ExercisePossibility.squat
-    @State private var results = [0]
+    @State private var results = ["0"]
     @State private var tracker = 0
     
     var body: some View {
@@ -26,7 +26,7 @@ struct CalculatorView: View {
                 }
                 .pickerStyle(.segmented)
                 Button {
-                    results = calculate(oneRepMax: Int(oneRepMax)!, exercise: exercise)
+                    results = calculate(oneRepMax: Double(oneRepMax)!, exercise: exercise)
                 } label: {
                     Text("Submit")
                 }
@@ -42,15 +42,16 @@ struct CalculatorView: View {
     }
 }
 
-func calculate(oneRepMax: Int, exercise: ExercisePossibility) -> [Int] {
-    var calculation = [0]
+func calculate(oneRepMax: Double, exercise: ExercisePossibility) -> [String] {
+    var calculation = [""]
     for index in 1...10 {
         if exercise.rawValue == "Squat" {
-            calculation.append(oneRepMax*index)
+            calculation.append(String(format:"%.0f", oneRepMax * (pow(0.90, Double(index)))))
+            
         } else if exercise.rawValue == "Bench" {
-            calculation.append(oneRepMax/index)
+            calculation.append(String(format:"%.0f", oneRepMax * (pow(0.87, Double(index)))))
         } else {
-            calculation.append(oneRepMax+index)
+            calculation.append(String(format:"%.0f", oneRepMax * (pow(0.84, Double(index)))))
         }
     }
     calculation.removeFirst()
