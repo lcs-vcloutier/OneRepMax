@@ -13,7 +13,7 @@ enum ExercisePossibility: String, Codable {
     case deadlift = "Deadlift"
 }
 
-struct Entry: Identifiable {
+struct Entry: Identifiable, Codable {
     var id = UUID()
     var date: Date
     var exercise: ExercisePossibility
