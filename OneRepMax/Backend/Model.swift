@@ -8,6 +8,7 @@
 import Foundation
 
 enum ExercisePossibility: String, Codable {
+    case all = "All"
     case squat = "Squat"
     case bench = "Bench"
     case deadlift = "Deadlift"
