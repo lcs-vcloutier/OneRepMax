@@ -34,7 +34,7 @@ struct CalculatorView: View {
             }
             Section(header: Text("RESULTS")) {
                 List(results.indices, id: \.self) { index in
-                    Text("\(index + 1)RM = \(self.results[index])LBS")
+                    Text("YOUR \(index + 1) REP MAX IS \(self.results[index]) POUNDS")
                 }
             }
         }
