@@ -11,7 +11,20 @@ import SwiftUI
 struct OneRepMaxApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView {
+                NavigationView {
+                    ListView()
+                }
+                .tabItem {
+                    Label("List", systemImage: "list.bullet.circle.fill")
+                }
+                NavigationView {
+                   // CalculatorView()
+                }
+                .tabItem {
+                    Label("Calculator", systemImage: "apps.iphone.badge.plus")
+                }
+            }
         }
     }
 }
