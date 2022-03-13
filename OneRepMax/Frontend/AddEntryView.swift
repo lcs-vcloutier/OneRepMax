@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddEntryView: View {
-    // CALL IN VM HERE
+    @ObservedObject var store: EntryStore
     @Binding var showing: Bool
     @State private var date = Date()
     @State private var exercise = ExercisePossibility.squat
@@ -36,7 +36,7 @@ struct AddEntryView: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button("Save") {
-                        // SAVE TASK HERE
+                        store.saveEntry(date: date, exercise: exercise, weight: Int(weight)!)
                         showing = false
                     }
                     .disabled(weight.isEmpty)

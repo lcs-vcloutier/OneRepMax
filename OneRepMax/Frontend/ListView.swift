@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct ListView: View {
+    @ObservedObject var store: EntryStore
     @State private var showingAddEntry = false
     var body: some View {
-        List(testData) { testData in
+        List(store.entries) { entry in
             VStack(alignment: .leading) {
                 HStack {
-                    Text(testData.exercise.rawValue)
+                    Text(entry.exercise.rawValue)
                     Spacer()
-                    Text("\(testData.weight)LBS")
+                    Text("\(entry.weight)LBS")
                 }
                 .font(.largeTitle)
-                Text(testData.date, style: .date)
+                Text(entry.date, style: .date)
                     .font(.caption)
             }
         }
@@ -33,7 +34,7 @@ struct ListView: View {
             }
         }
         .sheet(isPresented: $showingAddEntry) {
-            AddEntryView(showing: $showingAddEntry)
+            AddEntryView(store: store, showing: $showingAddEntry)
         }
     }
 }
