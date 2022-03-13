@@ -29,3 +29,17 @@ struct CalculatorView: View {
         .navigationTitle("Calculator")
     }
 }
+
+func calculate(oneRepMax: Int, exercise: ExercisePossibility) -> [Int] {
+    var calculation = [0]
+    for index in 1...10 {
+        if exercise.rawValue == "Squat" {
+            calculation.append(oneRepMax*index)
+        } else if exercise.rawValue == "Bench" {
+            calculation.append(oneRepMax/index)
+        } else {
+            calculation.append(oneRepMax+index)
+        }
+    }
+    return calculation
+}
