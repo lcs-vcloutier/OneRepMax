@@ -21,7 +21,7 @@ struct OneRepMaxApp: App {
                     Label("List", systemImage: "list.bullet.circle.fill")
                 }
                 NavigationView {
-                   // CalculatorView()
+                   CalculatorView()
                 }
                 .tabItem {
                     Label("Calculator", systemImage: "apps.iphone.badge.plus")
