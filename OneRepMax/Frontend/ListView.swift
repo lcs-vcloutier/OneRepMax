@@ -54,25 +54,25 @@ struct ListView: View {
 
 
 func filter(_ listOfEntries: [Entry], by exercise: ExercisePossibility) -> [Entry] {
-
-        // When the user wants to see all entries, just return the list provided
-        if exercise == .all {
-            return listOfEntries
-        } else {
-            // Create an empty list of entries
-            var filteredEntries: [Entry] = []
-
-            // Iterate over the list of entries, and build a new list w selected type of entry
-            for currentEntry in listOfEntries {
-                if exercise == .squat && currentEntry.exercise.rawValue == "Squat" {
-                    filteredEntries.insert(currentEntry, at: 0)
-                } else if exercise == .bench && currentEntry.exercise.rawValue == "Bench" {
-                    filteredEntries.insert(currentEntry, at: 0)
-                } else if exercise == .deadlift && currentEntry.exercise.rawValue == "Deadlift" {
-                    filteredEntries.insert(currentEntry, at: 0)
-                    }
+    
+    // When the user wants to see all entries, just return the list provided
+    if exercise == .all {
+        return listOfEntries
+    } else {
+        // Create an empty list of entries
+        var filteredEntries: [Entry] = []
+        
+        // Iterate over the list of entries, and build a new list w selected type of entry
+        for currentEntry in listOfEntries {
+            if exercise == .squat && currentEntry.exercise.rawValue == "Squat" {
+                filteredEntries.insert(currentEntry, at: 0)
+            } else if exercise == .bench && currentEntry.exercise.rawValue == "Bench" {
+                filteredEntries.insert(currentEntry, at: 0)
+            } else if exercise == .deadlift && currentEntry.exercise.rawValue == "Deadlift" {
+                filteredEntries.insert(currentEntry, at: 0)
             }
-            // Return the filtered list of entries
-            return filteredEntries
         }
+        // Return the filtered list of entries
+        return filteredEntries
+    }
 }
