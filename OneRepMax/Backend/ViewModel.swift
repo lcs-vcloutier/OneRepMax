@@ -7,17 +7,19 @@
 
 import Foundation
 
+// RETURNS THE CORRECT LOCATIION TO STORE/RETRIEVE ENTRIES
 func getDocumentsDirectory() -> URL {
     let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
     return paths[0]
 }
 
+// STORES AND RETRIEVES ENTRIES
 class EntryStore: ObservableObject {
     
-    // Stored propeties
+    // STORED PROPERTIES
     @Published var entries: [Entry]
     
-    // Initializers
+    // INITIALIZER
     init(entries: [Entry] = []) {
         let filename = getDocumentsDirectory().appendingPathComponent("savedEntries")
         do {
@@ -29,12 +31,12 @@ class EntryStore: ObservableObject {
         }
     }
     
-    // Save entry to entries array.
+    // SAVES A SINGLE ENTRY IN THE ENTRIES ARRAY
     func saveEntry(date: Date, exercise: ExercisePossibility, weight: Int) {
         entries.append(Entry(date: date, exercise: exercise, weight: weight))
     }
     
-    // Persist entire entries array.
+    // PERSISTS THE WHOLE ENTRIES ARRAY
     func persistEntries() {
         let filename = getDocumentsDirectory().appendingPathComponent("savedEntries")
         do {

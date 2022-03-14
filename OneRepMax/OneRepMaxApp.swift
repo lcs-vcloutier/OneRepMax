@@ -9,10 +9,17 @@ import SwiftUI
 
 @main
 struct OneRepMaxApp: App {
+    
+    // USED TO KEEP TRACK OF IF THE APP IS BACKGROUNDED
     @Environment(\.scenePhase) var scenePhase
+    
+    // SOURCE OF TRUTH FOR THE APP'S DATASTORE
     @StateObject private var store = EntryStore(entries: testData)
+    
+    // MAIN UI
     var body: some Scene {
         WindowGroup {
+            // A BOTTOM TAB VIEW THAT ALLOWS USER TO EASILY SWITCH BETWEEN VIEWS
             TabView {
                 NavigationView {
                     ListView(store: store)
@@ -21,20 +28,16 @@ struct OneRepMaxApp: App {
                     Label("List", systemImage: "list.bullet.circle.fill")
                 }
                 NavigationView {
-                   CalculatorView()
+                    CalculatorView()
                 }
                 .tabItem {
                     Label("Calculator", systemImage: "apps.iphone.badge.plus")
                 }
             }
         }
+        // IF APP IS BACKGROUNDED, PERSIST ENTRIES IN DATASTORE
         .onChange(of: scenePhase) { newPhase in
-            if newPhase == .inactive {
-                print("Inactive")
-            } else if newPhase == .active {
-                print("Active")
-            } else if newPhase == .background {
-                print("Backgrounded")
+            if newPhase == .background {
                 store.persistEntries()
             }
         }

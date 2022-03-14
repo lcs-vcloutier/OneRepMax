@@ -7,6 +7,7 @@
 
 import Foundation
 
+// ALL THE POSSIBLE EXERCISES
 enum ExercisePossibility: String, Codable {
     case all = "All"
     case squat = "Squat"
@@ -14,11 +15,15 @@ enum ExercisePossibility: String, Codable {
     case deadlift = "Deadlift"
 }
 
+// TRACKS A SINGLE ENTRY
 struct Entry: Identifiable, Codable {
+    
+    // STORED PROPERTIES
     var id = UUID()
     var date: Date
     var exercise: ExercisePossibility
     var weight: Int
+    
 }
 
 let testData = [

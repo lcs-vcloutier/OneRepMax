@@ -8,12 +8,26 @@
 import SwiftUI
 
 struct ListView: View {
+    
+    // CONNECT TO THE DATASTORE'S SOURCE OF TRUTH
     @ObservedObject var store: EntryStore
+    
+    // TRACKS WHETHER THE ADD ENTRY VIEW IS SHOWING OR NOT
     @State private var showingAddEntry = false
+    
+    // TRACKS USER INPUT FOR THE SELECTED ORDER OF ENTRIES
     @State private var showingNewestFirst = true
+    
+    // TRACKS USER INPUT FOR THE SELECTED EXERCISE
     @State private var selectedExerciseForVisibleEntries: ExercisePossibility = .all
+    
+    // THE USER INTERFACE THAT SHOWS USERS THEIR ONE REP MAX ENTRIES IN CHRONOLOGICAL ORDER
     var body: some View {
+        
+        // ITERATE OVER THE FILTERED LIST OF ENTRIES
         List(filter(listOfEntries: store.entries, exercise: selectedExerciseForVisibleEntries, showingNewestFirst: showingNewestFirst)) { entry in
+            
+            // OUTPUT THAT SHOWS THE USER THEIR ENTRIES
             VStack(alignment: .leading) {
                 HStack {
                     Text(entry.exercise.rawValue)
@@ -24,9 +38,12 @@ struct ListView: View {
                 Text(entry.date, style: .date)
                     .font(.caption)
             }
+            
         }
         .navigationTitle("Tracker")
         .toolbar {
+            
+            // BUTTON THAT SHOWS THE VIEW THAT ALLOWS USERS TO CREATE ENTRIES
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
                     showingAddEntry = true
@@ -34,6 +51,8 @@ struct ListView: View {
                     Image(systemName: "plus")
                 }
             }
+            
+            // BUTTON THAT TOGGLES THE CHRONOLOGICAL ORDER OF THE LIST OF ENTRIES
             ToolbarItem {
                 Button {
                     showingNewestFirst.toggle()
@@ -41,6 +60,8 @@ struct ListView: View {
                     Image(systemName: "arrow.up.arrow.down")
                 }
             }
+            
+            // PICKER THAT ALLOWS FOR USERS TO FILTER THEIR LIST BY EXERCISE
             ToolbarItem(placement: .primaryAction) {
                 Menu {
                     Picker("Filter tasks by exercise", selection: $selectedExerciseForVisibleEntries) {
@@ -54,19 +75,22 @@ struct ListView: View {
                 }
             }
         }
+        // A SHEET THAT IS REVEALED WHEN SHOWING ADD ENTRY IS TRUE
+        // THIS IS WHERE THE ADD ENTRY VIEW IS DISPLAYED
         .sheet(isPresented: $showingAddEntry) {
             AddEntryView(store: store, showing: $showingAddEntry)
         }
     }
 }
 
-
+// FILTER A LIST OF ENTRIES BY BOTH DATE AND EXERCISE POSSIBILITY THEN RETURN THE FILTERED LIST
 func filter(listOfEntries: [Entry], exercise: ExercisePossibility, showingNewestFirst: Bool) -> [Entry] {
     
-    // Create an empty list of entries
+    // CREATE AN EMPTY LIST
     var filteredEntries: [Entry] = []
     
-    // Loop over a list of entries and add the entries that fit the selected exercise to a new list
+    // ITERATE OVER THE INITIAL LIST OF ENTRIES
+    // ADD THOSE THAT FIT THE SELECTED EXERCISE TO THE FILTERED LIST
     for currentEntry in listOfEntries {
         if exercise == . all {
             filteredEntries = listOfEntries
@@ -79,7 +103,8 @@ func filter(listOfEntries: [Entry], exercise: ExercisePossibility, showingNewest
         }
     }
     
-    // Sort the filtered list of entries by comparing the dates of each entry
+    // SORT THE FILTERED LIST OF ENTRIES BY COMPARING THE DATES OF EACH ENTRY
+    // THIS IS DEPENDENT ON WHAT TYPE OF CHRONOLOGICAL ORDER THE USER SELECTED
     if showingNewestFirst == true {
         filteredEntries.sort {
             $0.date > $1.date
@@ -89,5 +114,7 @@ func filter(listOfEntries: [Entry], exercise: ExercisePossibility, showingNewest
             $0.date < $1.date
         }
     }
+    
+    // RETURN THE LIST OF FILTERED ENTRIES
     return filteredEntries
 }
