@@ -11,13 +11,11 @@ func getDocumentsDirectory() -> URL {
     return paths[0]
 }
 
-// STORES AND RETRIEVES ENTRIES
+// RETRIEVES AND STORES THE LIST OF ENTRIES
 class EntryStore: ObservableObject {
-    
-    // STORED PROPERTIES
+    // TRACKS A LIST OF ENTRIES
     @Published var entries: [Entry]
-    
-    // INITIALIZER
+    // RETRIEVES THE ENTRIES LIST
     init(entries: [Entry] = []) {
         let filename = getDocumentsDirectory().appendingPathComponent("savedEntries")
         do {
@@ -28,14 +26,9 @@ class EntryStore: ObservableObject {
             self.entries = entries
         }
     }
-    
-    // SAVES AN ENTRY INTO THE ENTRIES ARRAY, THEN PERSISTS THE ARRAY
+    // SAVES AN ENTRY INTO THE ENTRIES LIST, THEN PERSISTS THE LIST
     func saveEntry(date: Date, exercise: ExercisePossibility, weight: Int) {
-        
-        // ADDS THE SINGLE ENTRY TO THE END OF THE ARRAY
         entries.append(Entry(date: date, exercise: exercise, weight: weight))
-        
-        // PERSISTS THE ARRAY OF ENTRIES
         let filename = getDocumentsDirectory().appendingPathComponent("savedEntries")
         do {
             let encoder = JSONEncoder()
@@ -45,6 +38,5 @@ class EntryStore: ObservableObject {
         } catch {
             print(error.localizedDescription)
         }
-        
     }
 }

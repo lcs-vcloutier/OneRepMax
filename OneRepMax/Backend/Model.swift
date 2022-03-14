@@ -15,13 +15,11 @@ enum ExercisePossibility: String, Codable {
 
 // TRACKS A SINGLE ENTRY
 struct Entry: Identifiable, Codable {
-    
     // STORED PROPERTIES
     var id = UUID()
     var date: Date
     var exercise: ExercisePossibility
     var weight: Int
-    
 }
 
 let testData = [
