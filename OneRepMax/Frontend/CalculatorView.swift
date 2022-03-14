@@ -55,8 +55,13 @@ struct CalculatorView: View {
                 List(results.indices, id: \.self) { index in
                     
                     // FOR EACH RESULT SHOW THE USER THE PREDICTED WEIGHT WITH THE CORRESPONDING REP COUNT
-                    Text("YOUR \(index + 1) REP MAX IS \(self.results[index]) POUNDS")
-                    
+                    HStack {
+                        Text("\(index + 1)RM")
+                        Spacer()
+                        Text("\(self.results[index])LBS")
+                    }
+                    .font(.largeTitle)
+
                 }
             }
         }
