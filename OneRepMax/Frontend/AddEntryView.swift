@@ -53,7 +53,7 @@ struct AddEntryView: View {
                         .datePickerStyle(.graphical)
                 }
             }
-            .navigationTitle(exercise.rawValue)
+            .navigationTitle("New Entry")
             .toolbar {
                 
                 // BUTTON THAT SAVES THE CURRENT ENTRY AND HIDES THIS VIEW
