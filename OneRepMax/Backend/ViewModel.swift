@@ -31,13 +31,13 @@ class EntryStore: ObservableObject {
         }
     }
     
-    // SAVES A SINGLE ENTRY IN THE ENTRIES ARRAY
+    // SAVES AN ENTRY INTO THE ENTRIES ARRAY, THEN PERSISTS THE ARRAY
     func saveEntry(date: Date, exercise: ExercisePossibility, weight: Int) {
+        
+        // ADDS THE SINGLE ENTRY TO THE END OF THE ARRAY
         entries.append(Entry(date: date, exercise: exercise, weight: weight))
-    }
-    
-    // PERSISTS THE WHOLE ENTRIES ARRAY
-    func persistEntries() {
+        
+        // PERSISTS THE ARRAY OF ENTRIES
         let filename = getDocumentsDirectory().appendingPathComponent("savedEntries")
         do {
             let encoder = JSONEncoder()
@@ -47,5 +47,6 @@ class EntryStore: ObservableObject {
         } catch {
             print(error.localizedDescription)
         }
+        
     }
 }

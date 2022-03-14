@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ListView: View {
     
-    // CONNECT TO THE DATASTORE'S SOURCE OF TRUTH
-    @ObservedObject var store: EntryStore
+    // THE DATASTORE'S SOURCE OF TRUTH
+    @StateObject private var store = EntryStore(entries: testData)
     
     // TRACKS WHETHER THE ADD ENTRY VIEW IS SHOWING OR NOT
     @State private var showingAddEntry = false
@@ -74,12 +74,15 @@ struct ListView: View {
                     Image(systemName: "line.3.horizontal.circle")
                 }
             }
+            
         }
+        
         // A SHEET THAT IS REVEALED WHEN SHOWING ADD ENTRY IS TRUE
         // THIS IS WHERE THE ADD ENTRY VIEW IS DISPLAYED
         .sheet(isPresented: $showingAddEntry) {
             AddEntryView(store: store, showing: $showingAddEntry)
         }
+        
     }
 }
 

@@ -7,38 +7,26 @@
 
 import SwiftUI
 
+// APP ENTRY POINT
 @main
 struct OneRepMaxApp: App {
-    
-    // USED TO KEEP TRACK OF IF THE APP IS BACKGROUNDED
-    @Environment(\.scenePhase) var scenePhase
-    
-    // SOURCE OF TRUTH FOR THE APP'S DATASTORE
-    @StateObject private var store = EntryStore(entries: testData)
-    
-    // MAIN UI
     var body: some Scene {
         WindowGroup {
             // A BOTTOM TAB VIEW THAT ALLOWS USER TO EASILY SWITCH BETWEEN VIEWS
             TabView {
-                NavigationView {
-                    ListView(store: store)
-                }
+                
+                // VIEW THAT ALLOWS USER TO SEE ONE REP MAX ENTRIES AS WELL AS CREATE THEM
+                NavigationView { ListView() }
                 .tabItem {
                     Label("List", systemImage: "list.bullet.circle.fill")
                 }
-                NavigationView {
-                    CalculatorView()
-                }
+                
+                // VIEW THAT ALLOWS USER TO PREDICT VARIOUS REP MAXES
+                NavigationView { CalculatorView() }
                 .tabItem {
                     Label("Calculator", systemImage: "apps.iphone.badge.plus")
                 }
-            }
-        }
-        // IF APP IS BACKGROUNDED, PERSIST ENTRIES IN DATASTORE
-        .onChange(of: scenePhase) { newPhase in
-            if newPhase == .background {
-                store.persistEntries()
+                
             }
         }
     }

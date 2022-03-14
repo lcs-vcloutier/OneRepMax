@@ -44,8 +44,10 @@ struct CalculatorView: View {
                 } label: {
                     Text("Submit")
                 }
+                
                 // ONLY ALLOW THIS BUTTON TO BE PRESSED IF THE FORM HAS ACTUALLY BEEN FILLED OUT
                 .disabled(oneRepMax.isEmpty)
+                
             }
             
             // OUTPUT AREA
@@ -56,6 +58,7 @@ struct CalculatorView: View {
                     
                     // FOR EACH RESULT SHOW THE USER THE PREDICTED WEIGHT WITH THE CORRESPONDING REP COUNT
                     Text("YOUR \(index + 1) REP MAX IS \(self.results[index]) POUNDS")
+                    
                 }
             }
         }

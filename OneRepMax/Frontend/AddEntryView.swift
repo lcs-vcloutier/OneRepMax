@@ -76,6 +76,7 @@ struct AddEntryView: View {
                         showing = false
                     }
                 }
+                
             }
         }
         // DISABLE SWIPE TO DISMISS
