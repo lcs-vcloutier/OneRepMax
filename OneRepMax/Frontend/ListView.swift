@@ -10,9 +10,10 @@ import SwiftUI
 struct ListView: View {
     @ObservedObject var store: EntryStore
     @State private var showingAddEntry = false
+    @State private var showingNewestFirst = true
     @State private var selectedExerciseForVisibleEntries: ExercisePossibility = .all
     var body: some View {
-        List(filter(store.entries, by: selectedExerciseForVisibleEntries)) { entry in
+        List(filter(listOfEntries: store.entries, exercise: selectedExerciseForVisibleEntries, showingNewestFirst: showingNewestFirst)) { entry in
             VStack(alignment: .leading) {
                 HStack {
                     Text(entry.exercise.rawValue)
@@ -34,6 +35,13 @@ struct ListView: View {
                 }
             }
             ToolbarItem {
+                Button {
+                    showingNewestFirst.toggle()
+                } label: {
+                    Image(systemName: "arrow.up.arrow.down")
+                }
+            }
+            ToolbarItem(placement: .primaryAction) {
                 Menu {
                     Picker("Filter tasks by exercise", selection: $selectedExerciseForVisibleEntries) {
                         Text(ExercisePossibility.all.rawValue).tag(ExercisePossibility.all)
@@ -53,26 +61,33 @@ struct ListView: View {
 }
 
 
-func filter(_ listOfEntries: [Entry], by exercise: ExercisePossibility) -> [Entry] {
+func filter(listOfEntries: [Entry], exercise: ExercisePossibility, showingNewestFirst: Bool) -> [Entry] {
     
-    // When the user wants to see all entries, just return the list provided
-    if exercise == .all {
-        return listOfEntries
-    } else {
-        // Create an empty list of entries
-        var filteredEntries: [Entry] = []
-        
-        // Iterate over the list of entries, and build a new list w selected type of entry
-        for currentEntry in listOfEntries {
-            if exercise == .squat && currentEntry.exercise.rawValue == "Squat" {
-                filteredEntries.insert(currentEntry, at: 0)
-            } else if exercise == .bench && currentEntry.exercise.rawValue == "Bench" {
-                filteredEntries.insert(currentEntry, at: 0)
-            } else if exercise == .deadlift && currentEntry.exercise.rawValue == "Deadlift" {
-                filteredEntries.insert(currentEntry, at: 0)
-            }
+    // Create an empty list of entries
+    var filteredEntries: [Entry] = []
+    
+    // Loop over a list of entries and add the entries that fit the selected exercise to a new list
+    for currentEntry in listOfEntries {
+        if exercise == . all {
+            filteredEntries = listOfEntries
+        } else if exercise == .squat && currentEntry.exercise.rawValue == "Squat" {
+            filteredEntries.append(currentEntry)
+        } else if exercise == .bench && currentEntry.exercise.rawValue == "Bench" {
+            filteredEntries.append(currentEntry)
+        } else if exercise == .deadlift && currentEntry.exercise.rawValue == "Deadlift" {
+            filteredEntries.append(currentEntry)
         }
-        // Return the filtered list of entries
-        return filteredEntries
     }
+    
+    // Sort the filtered list of entries by comparing the dates of each entry
+    if showingNewestFirst == true {
+        filteredEntries.sort {
+            $0.date > $1.date
+        }
+    } else {
+        filteredEntries.sort {
+            $0.date < $1.date
+        }
+    }
+    return filteredEntries
 }
