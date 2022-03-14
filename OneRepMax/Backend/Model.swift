@@ -28,6 +28,5 @@ struct Entry: Identifiable, Codable {
 
 let testData = [
     Entry(date: Date(), exercise: ExercisePossibility.bench, weight: 225),
-    Entry(date: Date(), exercise: ExercisePossibility.squat, weight: 315),
-    Entry(date: Date(), exercise: ExercisePossibility.deadlift, weight: 405)
+    Entry(date: Date().addingTimeInterval(84600), exercise: ExercisePossibility.squat, weight: 315),
 ]
