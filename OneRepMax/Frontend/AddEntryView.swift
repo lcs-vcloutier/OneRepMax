@@ -29,8 +29,10 @@ struct AddEntryView: View {
                     }
                     .pickerStyle(.segmented)
                 }
-                DatePicker("", selection: $date, displayedComponents: .date)
-                    .datePickerStyle(.graphical)
+                Section(header: Text("Date")) {
+                    DatePicker("", selection: $date, displayedComponents: .date)
+                        .datePickerStyle(.graphical)
+                }
             }
             .navigationTitle(exercise.rawValue)
             .toolbar {
