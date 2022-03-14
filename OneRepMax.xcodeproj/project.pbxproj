@@ -89,8 +89,8 @@
 		9201790127DE581700D3D5AA /* Backend */ = {
 			isa = PBXGroup;
 			children = (
-				9201790227DE583200D3D5AA /* Model.swift */,
 				9201790427DE583C00D3D5AA /* ViewModel.swift */,
+				9201790227DE583200D3D5AA /* Model.swift */,
 			);
 			path = Backend;
 			sourceTree = "<group>";
