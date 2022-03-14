@@ -1,11 +1,11 @@
 //
-//  ListView.swift
+//  ContentView.swift
 //  OneRepMax
 //
 
 import SwiftUI
 
-struct ListView: View {
+struct ContentView: View {
     // THE DATASTORE'S SOURCE OF TRUTH
     @StateObject private var store = EntryStore(entries: testData)
     // TRACKS WHETHER THE ADD ENTRY VIEW IS SHOWING OR NOT

@@ -50,7 +50,7 @@ struct AddEntryView: View {
                         store.saveEntry(date: date, exercise: exercise, weight: Int(weight)!)
                         showing = false
                     }
-                    // ONLY ALLOW THIS BUTTON TO BE PRESSED IF THE FORM HAS ACTUALLY BEEN FILLED OUT
+                    // DISABLE BUTTON UNLESS FORM IS FILLED OUT
                     .disabled(weight.isEmpty)
                 }
                 // BUTTON THAT HIDES THIS VIEW
