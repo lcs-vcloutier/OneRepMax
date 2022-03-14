@@ -47,7 +47,6 @@ func calculate(oneRepMax: Double, exercise: ExercisePossibility) -> [String] {
     for index in 1...10 {
         if exercise.rawValue == "Squat" {
             calculation.append(String(format:"%.0f", oneRepMax * (pow(0.90, Double(index)))))
-            
         } else if exercise.rawValue == "Bench" {
             calculation.append(String(format:"%.0f", oneRepMax * (pow(0.87, Double(index)))))
         } else {
